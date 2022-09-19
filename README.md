@@ -1,6 +1,6 @@
-# Master Sheet Run Summary
+# Question Generator
 
-This is a python script that queries a google sheet and post the summary to slack. The google sheet contains the category of a sigma workbook, the workbook's name, the URL of the workbook and a summary of what the workbook contains. This is useful for monitoring the sigma workbooks, and getting the main information needed on them.
+This is a python script that runs daily and post n = 3 data science questions in the #sigma-testing channel. 
 
 ## Setup
 
@@ -21,17 +21,23 @@ pip3 install slack_sdk
 ```
 
 ## File Specific Changes
-Copy master_sheet_run_summary.py to a directory and make the changes to the file:
+Copy question_generator.py to a directory and make the changes to the file:
 
 ```python
-# Update the file path to .env in line 8
+# Update the file path to .env in line 9
 load_dotenv('dot env file path')
 
-# Load google service account in line 12
-sa = gspread.service_account('')
+# Set the conversation ID (slack channel key) in line 15 (if necessary)
+conversation_id = ""
 
-# Set the slack channel in line 52 (if necessary)
-channel='#',
+# Download the JSON questions file to your local computer and load it to the script in line 17
+file = ''
+
+# Set the folder location for where your images are stored in line 20
+folder = ''
+
+# Set the slack channel where the question should be posted in lines 105, 119 and 123
+channel='#'
 ```
 
 ## Schedule
@@ -39,5 +45,9 @@ Test that it runs locally.
 
 ```bash
 # Local test run
-python3 master_sheet_run_summary.py
+python3 question_generator.py
 ```
+
+## Example Run
+<img width="819" alt="Screen Shot 2022-08-30 at 11 36 21 AM" src="https://user-images.githubusercontent.com/108364344/187516513-82ee7da5-d504-4ac4-80fd-c321848b69de.png">
+
